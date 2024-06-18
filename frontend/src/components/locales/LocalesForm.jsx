@@ -14,7 +14,7 @@ const LocalesForm = ({ Accion, Local, Ciudaes, Guardar, Volver }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="needs-validation">
-      <fieldset disabled={Accion === "C"}>
+      <fieldset disabled={Accion === "V"}>
         <div className="mb-3">
           <label htmlFor="address" className="form-label">
             Dirección
@@ -71,6 +71,7 @@ const LocalesForm = ({ Accion, Local, Ciudaes, Guardar, Volver }) => {
           </label>
           <input
             type="number"
+            step={0.001}
             className={`form-control ${errors.latitude ? "is-invalid" : ""}`}
             id="latitude"
             {...register("latitude", { required: true })}
@@ -86,6 +87,7 @@ const LocalesForm = ({ Accion, Local, Ciudaes, Guardar, Volver }) => {
           </label>
           <input
             type="number"
+            step={0.001}
             className={`form-control ${errors.longitude ? "is-invalid" : ""}`}
             id="longitude"
             {...register("longitude", { required: true })}

@@ -14,7 +14,7 @@ async function findStoreByName(name) {
 }
 
 async function getStoreById(store) {
-  return httpService.get(`${LOCALES}/${store.id}`);
+  return httpService.get(`${LOCALES}/${store.number}`);
 }
 
 async function createStore(store) {
@@ -22,11 +22,11 @@ async function createStore(store) {
 }
 
 async function updateStore(store) {
-  return httpService.put(`${LOCALES}/${store.id}`, store);
+  return httpService.put(`${LOCALES}/${store.number}`, store);
 }
 
 async function deleteStore(store) {
-  return httpService.delete(`${LOCALES}/${store.id}`);
+  return httpService.delete(`${LOCALES}/${store.number}`);
 }
 
 async function getCiudadesArgentina() {

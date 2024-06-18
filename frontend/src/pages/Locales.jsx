@@ -51,7 +51,7 @@ const Locales = () => {
   }
 
   async function findStoreById(local, accion) {
-    const response = await localesService.findStoreById(local.id);
+    const response = await localesService.getStoreById(local);
     setAccion(accion);
     setLocal(response.data);
   }
@@ -64,12 +64,24 @@ const Locales = () => {
     findStoreById(local, "E");
   }
 
-  async function Eliminar(local) {
-    alert("Eliminar " + local.id);
+  async function Borrar(local) {
+    alert(`¿Eliminar Local ${local.number}?`);
   }
 
   function Volver() {
     setAccion("L");
+  }
+
+  function Guardar(local) {
+    try {
+      if (Accion === "A") {
+        localesService.createStore(local);
+      } else {
+        localesService.updateStore(local);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   useEffect(() => {
@@ -86,6 +98,8 @@ const Locales = () => {
               ? "Lista de locales"
               : Accion === "A"
               ? "Nuevo local"
+              : Accion === "V"
+              ? "Ver local"
               : "Editar local"}
           </h3>
 
@@ -120,7 +134,12 @@ const Locales = () => {
 
           {/* 👇 */}
           {Accion === "L" && Locales.length > 0 && (
-            <LocalesLista Locales={Locales} />
+            <LocalesLista
+              Locales={Locales}
+              Ver={Ver}
+              Editar={Editar}
+              Borrar={Borrar}
+            />
           )}
 
           {/* 👇 */}

@@ -62,7 +62,7 @@ const findStoreById = async (req, res) => {
 const createStore = async (req, res) => {
   try {
     const store = await Stores.create(req.body);
-    res.json(store);
+    res.status(201).json(store);
   } catch (err) {
     res.status(500).json({
       message: err.message,
@@ -73,8 +73,10 @@ const createStore = async (req, res) => {
 const updateStore = async (req, res) => {
   try {
     const store = await Stores.findByPk(req.params.id);
-    store.update(req.body);
-    res.json(store);
+    if (store) {
+      await store.update(req.body);
+      res.json(store);
+    }
   } catch (err) {
     res.status(500).json({
       message: err.message,
@@ -86,7 +88,7 @@ const deleteStore = async (req, res) => {
   try {
     const store = await Stores.findByPk(req.params.id);
     store.destroy();
-    res.json(store);
+    res.status(204).send;
   } catch (err) {
     res.status(500).json({
       message: err.message,

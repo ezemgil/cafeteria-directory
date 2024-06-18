@@ -1,6 +1,6 @@
 import React from "react";
 
-const LocalesLista = ({ Locales }) => {
+const LocalesLista = ({ Locales, Ver, Editar, Borrar }) => {
   return (
     <>
       <section className="d-flex flex-column justify-content-start">
@@ -14,6 +14,7 @@ const LocalesLista = ({ Locales }) => {
                 <th scope="col">Ciudad</th>
                 <th scope="col">Latitud</th>
                 <th scope="col">Longitud</th>
+                <th scope="col">Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -26,6 +27,26 @@ const LocalesLista = ({ Locales }) => {
                     <td>{store.city}</td>
                     <td>{store.latitude}</td>
                     <td>{store.longitude}</td>
+                    <td className="d-flex gap-1">
+                      <button
+                        className="btn btn-sm btn-success"
+                        onClick={() => Ver(store)}
+                      >
+                        <i className="fa fa-eye"></i>
+                      </button>
+                      <button
+                        className="btn btn-sm btn-warning"
+                        onClick={() => Editar(store)}
+                      >
+                        <i className="fa fa-edit"></i>
+                      </button>
+                      <button
+                        className="btn btn-sm btn-danger"
+                        onClick={() => Borrar(store)}
+                      >
+                        <i className="fa fa-trash"></i>
+                      </button>
+                    </td>
                   </tr>
                 ))}
             </tbody>
